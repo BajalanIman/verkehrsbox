@@ -28,16 +28,18 @@
         >
           <!-- <div class="bg-cyan-900 w-96 h-10"></div> -->
 
+          <div v-if="!showNameMenu" class="pt-[237px]"></div>
           <div
-            class="text-lg justify-center-center items-center flex flex-col w-full pt-32 mr-2 ml-[-5px]"
+            v-if="showNameMenu"
+            class="text-lg justify-center-center items-center flex flex-col w-full pt-16 mr-2 ml-[-5px]"
           >
             <div
-              class="ml-2 mb-2 w-12 h-12 bg-blue-700 rounded-full flex justify-center items-center"
+              class="ml-2 w-24 h-24 bg-blue-700 rounded-full flex justify-center items-center"
             >
               {{ profileImage }}
             </div>
 
-            <p v-if="showNameMenu" class="">
+            <p v-if="showNameMenu" class="mt-6">
               <span class="pr-2">{{ firstName }}</span>
               <span class="pr-2">{{ lastName }}</span>
             </p>
@@ -544,6 +546,13 @@ export default {
         this.langSideHight = "35px";
       } else {
         this.langSideHight = "30px";
+      }
+
+      if (this.sideBarWidth === "55px") {
+        this.showNameMenu = !this.showNameMenu;
+        this.sideBarWidth = "250px";
+        this.displayApps2 = false;
+        this.ShowIcon = false;
       }
     },
 
