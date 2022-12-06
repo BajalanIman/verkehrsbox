@@ -1,8 +1,11 @@
 {
-  "name": "mietbox-electron",
-  "version": "0.1.0",
+  "name": "mietbox",
+  "description": "Created by electron and vue",
+  "icon": "build/icons/icon.png",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
+    "publish:electron": "vue-cli-service build:electron --win -p always",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

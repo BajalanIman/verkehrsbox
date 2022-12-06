@@ -17,6 +17,7 @@ async function createWindow() {
     width: 1200,
     height: 800,
     resizable: false,
+    icon: "/build/icons/icon.png",
 
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
