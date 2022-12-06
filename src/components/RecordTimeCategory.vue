@@ -2,7 +2,7 @@
   <div>
     <Multiselect
       v-model="value"
-      placeholder="Select category"
+      :placeholder="$t('Selectcategory')"
       :close-on-select="false"
       track-by="name"
       label="value"

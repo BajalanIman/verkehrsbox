@@ -4,7 +4,9 @@
     <div
       class="bg-cyan-900 w-full h-10 text-end pt-2 pb-2 text-white font-serif text-white grid grid-cols-[_1fr,_0px]"
     >
-      <div class="justify-self-center bg-cyan-900">{{ $t("allOrder") }}</div>
+      <div class="justify-self-center bg-cyan-900">
+        {{ $t("allOrder") }}
+      </div>
 
       <router-link
         to="/dashboard/main-dashboard"

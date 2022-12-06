@@ -4,7 +4,7 @@
       v-model="value"
       :searchable="true"
       mode="tags"
-      placeholder="Select Task"
+      :placeholder="$t('SelectTask')"
       track-by="name"
       label="name"
       :close-on-select="false"

@@ -4,7 +4,7 @@
       v-model="value"
       :searchable="true"
       mode="tags"
-      placeholder="Select employees"
+      :placeholder="$t('Selectemployees')"
       track-by="label"
       label="label"
       :close-on-select="false"

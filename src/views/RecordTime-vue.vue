@@ -44,11 +44,9 @@
         </p>
       </div>
       <!-- Employees -->
-      <div
-        class="bg-white h-screen pb-[250px] flex justify-center items-center pt-20"
-      >
+      <div class="bg-white flex justify-center items-center pt-20 pb-[120px]">
         <form v-on:submit.prevent="submitform" ref="textareaform">
-          <div class="flex pr-8 flex-2 pt-10 text-xl">
+          <div class="flex pr-8 flex-2 text-xl">
             <div class="pl-3 pr-3">
               <!--             <label class="block mt-3 text-xl ml-4" for="Employees">{{
               $t("Employees")
@@ -131,10 +129,10 @@
                   id="Objecttype"
                 >
                   <option value="Not selected" disabled selected>
-                    Select object type
+                    {{ $t("SelectObjectType") }}
                   </option>
-                  <option value="Vehicle">Vehicle</option>
-                  <option value="Product">Product</option>
+                  <option value="Vehicle">{{ $t("Vehicle") }}</option>
+                  <option value="Product">{{ $t("Product") }}</option>
                 </select>
               </div>
               <!-- Select Object -->
@@ -164,7 +162,7 @@
                 <div>
                   <Multiselect
                     v-model="form.timerableType"
-                    placeholder="Select object"
+                    :placeholder="$t('Selectobject')"
                     track-by="name"
                     label="name"
                     :close-on-select="true"
@@ -247,7 +245,7 @@
                 v-model="form.note"
                 type="text"
                 class="h-[140px] p-2 w-96 ml-4 mt-1 border rounded-xl shadow-md bg-white rounded-xl shadow-md border-gray-400 text-base focus:outline-none focus:border-sky-500 focus:ring-sky-500 resize-none"
-                placeholder="Note..."
+                v-bind:placeholder="$t('Note')"
               ></textarea>
             </div>
             <div>
@@ -338,7 +336,7 @@
                 type="number"
                 id="employees"
                 name="employees"
-                placeholder="Pause in Minuten"
+                :placeholder="$t('PauseInMinuten')"
               />
 
               <!--  End time -->
@@ -363,7 +361,7 @@
               </label>
               <div>
                 <textarea
-                  placeholder="Tap tp see the total time."
+                  :placeholder="$t('totalTimeDescription')"
                   v-on:click="totaldateOne"
                   v-model="totalTime"
                   type="text"

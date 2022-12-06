@@ -88,7 +88,7 @@
                 @click="showDetailOrders"
                 :style="{ height: allOrderHight }"
               >
-                <div class="flex flex-start">
+                <div class="flex flex-start pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -189,11 +189,11 @@
             <!-- Time Record -->
             <div class="mt-4">
               <div
-                class="w-full flex justify-between pointer-events-none"
+                class="w-full flex justify-between"
                 @click="showtimeSideHight"
                 :style="{ height: timeSideHight }"
               >
-                <div class="flex flex-start cursor-not-allowed">
+                <div class="flex flex-start">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -211,7 +211,7 @@
 
                   <span
                     v-if="showNameMenu"
-                    class="pl-2 justify-self-start text-gray-400"
+                    class="pl-2 justify-self-start text-white"
                     >{{ $t("timeRecord") }}</span
                   >
                 </div>
@@ -249,10 +249,10 @@
                   </svg>
                 </div>
               </div>
-              <div class="pl-12 cursor-pointer">
+              <div class="pl-12 cursor-pointer cursor-not-allowed">
                 <router-link
                   to="/dashboard/recordings"
-                  class="pb-1 flex"
+                  class="pb-1 flex text-gray-400 pointer-events-none"
                   v-if="displayTime"
                 >
                   <span v-if="showNameMenu" class="hover:text-slate-500">{{
