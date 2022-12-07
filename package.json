@@ -1,8 +1,7 @@
 {
   "name": "mietbox",
-  "description": "Created by electron and vue",
   "icon": "build/icons/icon.png",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "publish:electron": "vue-cli-service build:electron --win -p always",
@@ -13,7 +12,8 @@
     "electron:serve": "vue-cli-service electron:serve",
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "postuninstall": "electron-builder install-app-deps",
+    "release": "electron-builder"
   },
   "main": "background.js",
   "dependencies": {
@@ -30,6 +30,8 @@
     "axios-version": "^1.0.0",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
+    "electron-builder": "^23.6.0",
+    "electron-updater": "^5.3.0",
     "http-proxy-middleware": "^2.0.6",
     "postcss": "^8",
     "save": "^2.9.0",
@@ -56,6 +58,11 @@
     "vue-cli-plugin-electron-builder": "~2.1.1",
     "vue-cli-plugin-i18n": "~2.3.1",
     "vue-cli-plugin-tailwind": "~3.0.0"
+  },
+  "overrides": {
+    "vue-cli-plugin-electron-builder": {
+      "electron-builder": "^23.6.0"
+    }
   },
   "eslintConfig": {
     "root": true,
