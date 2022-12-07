@@ -1,4 +1,5 @@
 "use strict";
+import { autoUpdater } from "electron-updater";
 
 import { app, protocol, BrowserWindow } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
@@ -27,6 +28,16 @@ async function createWindow() {
       webSecurity: false,
     },
   });
+  // Check for Updates
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
+    if (!process.env.IS_TEST) win.webContents.openDevTools();
+  } else {
+    createProtocol("app");
+    // Load the index.html when not in development
+    win.loadURL("app://./index.html") + autoUpdater.checkForUpdatesAndNotify();
+  }
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
