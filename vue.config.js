@@ -5,6 +5,7 @@ module.exports = defineConfig({
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
+        publish: ["github"],
         /* win: {
             target: ["nsis"],
           icon: "./public/mitbox.png",
