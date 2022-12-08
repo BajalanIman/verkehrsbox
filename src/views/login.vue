@@ -1,11 +1,14 @@
 <template>
-  <div class="bg-white h-screen flex w-full justify-center items-center pt-35">
+  <div
+    class="bg-white h-screen flex w-full justify-center items-center relative"
+  >
     <form
       v-on:submit.prevent="submitform"
       class="flex flex-col w-80 gap-1 font-sans"
       action=""
     >
       <!-- Messages -->
+
       <div class="w-96 h-12 justify-end items-end">
         <p
           v-if="errorSending"
@@ -144,16 +147,21 @@
         Login
       </button>
     </form>
+    <div class="absolute ml-[800px] mt-[720px] text-xs">
+      Copyright © 2022 by AK Software GmbH, Version: {{ version }}
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
+import { version } from "/package.json";
 
 export default {
   name: "login-vue",
   components: {},
   data() {
     return {
+      version: version,
       errorSending: false,
       showpass: true,
       thetype: "password",
