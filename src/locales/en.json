@@ -19,7 +19,7 @@
 
   "RecordTime": "Record Time",
   "Employees": "Employees",
-  "ObjectType": "Object type",
+  "ObjectType": "Type",
   "SelectObject": "Select Object",
   "CategoryActiviry": "Category/Activiry",
   "Notes": "Notes",
@@ -37,6 +37,7 @@
   "SelectTask": "Select Task",
   "Note": "Notes...",
   "PauseInMinuten": "Pause in minute",
+  "RecordWorktime": "Record Worktime",
 
   "order": "Order",
   "meternumber": "Meter number",
