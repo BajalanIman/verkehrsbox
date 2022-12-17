@@ -1,8 +1,11 @@
 {
   "name": "mietbox",
   "icon": "build/icons/icon.png",
-  "version": "0.2.04",
+  "version": "0.2.05",
   "private": true,
+  "repository": {
+    "url": "https://github.com/BajalanIman/verkehrsbox.git"
+  },
   "scripts": {
     "publish:electron": "vue-cli-service build:electron --win -p always",
     "serve": "vue-cli-service serve",
@@ -16,6 +19,10 @@
     "release": "electron-builder"
   },
   "main": "background.js",
+  "author": {
+    "name": "Iman",
+    "email": "BajalanIman@gmail.com"
+  },
   "dependencies": {
     "-": "^0.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",

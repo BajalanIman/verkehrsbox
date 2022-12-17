@@ -1,11 +1,10 @@
-const { defineConfig } = require("@vue/cli-service");
-module.exports = defineConfig({
+module.exports = ({
   // I added the below lines
   /*  publicPath: process.env.NODE_ENV === "production" ? "./" : "/", */
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
-        publish: ["github"],
+        publish: ['github']
         /* win: {
             target: ["nsis"],
           icon: "./public/mitbox.png",
