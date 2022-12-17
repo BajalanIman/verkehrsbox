@@ -2,57 +2,62 @@
   <div>
     <div>
       <div
-        class="pr-2 bg-cyan-900 w-full h-8 text-end pt-2 pb-2 text-white font-serif text-white grid grid-cols-[_1fr,_0px]"
+        class="pr-2 bg-cyan-900 w-12/12 mr-5 text-end pt-2 pb-2 text-white font-serif text-white grid grid-cols-[_1fr,_0px] h-12"
       >
         <div class="justify-self-center bg-cyan-900 pt-1">
           {{ $t("RecordTime") }}
         </div>
-        <router-link
-          to="/dashboard/main-dashboard"
-          class="justify-self-end bg-cyan-900 pr-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-7 h-7"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
-            />
-          </svg>
-        </router-link>
+        <div class="justify-self-center h-8">
+          <router-link to="/dashboard/main-dashboard" class="">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-7 h-7"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+              />
+            </svg>
+          </router-link>
+        </div>
       </div>
       <!-- Messages -->
-      <div class="w-full grid grid-col-0 justify-end items-end mt-3 bg-white">
-        <p
-          v-if="thanksMessage"
-          class="mr-5 pl-8 pt-1 pb-2 w-[350px] h-8 mt-3 text-white bg-cyan-800 justify-center font-bold"
-        >
-          {{ $t("thanksMessage") }}
-        </p>
-
-        <p
-          v-if="errorSending"
-          class="mr-5 pl-6 pr-4 pt-1 w-96 pb-2 h-8 mt-3 text-white bg-red-500 justify-center font-bold"
-        >
-          Error: {{ errors }}
-        </p>
+      <div
+        class="min-w-[450px] p-2 ml-[450px] mt-10 h-10 text-lg font-bold absolute flex justify-center items-center"
+      >
+        <textarea
+          class="resize-none text-base text-orange-600 min-w-full text-center focus:outline-none focus:border-sky-50 focus:ring-sky-50"
+          v-model="errorMessageFillForm"
+        ></textarea>
       </div>
+
+      <p
+        v-if="thanksMessage"
+        class="h-[50px] text-base text-xl font-bold text-cyan-900 w-[400px] ml-[500px] mt-4 absolute flex justify-end items-end"
+      >
+        {{ $t("thanksMessage") }}
+      </p>
+
+      <p
+        v-if="errorSending"
+        class="h-8 text-white bg-red-500 justify-center font-bold"
+      >
+        Error: {{ errors }}
+      </p>
+
       <!-- Employees -->
 
-      <div
-        class="bg-white flex justify-center items-center pb-[125px] h-[718px]"
-      >
+      <div class="bg-white flex justify-center items-center h-[710px]">
         <!-- Header -->
 
         <form v-on:submit.prevent="submitform" ref="textareaform">
           <div class="flex flex-2 text-xl">
-            <div class="pr-3">
+            <div class="pr-3 pl-2">
               <!-- Object type -->
               <div class="pb-3">
                 <label
@@ -70,15 +75,20 @@
                 >
                   <select
                     v-model="objectSelected"
-                    class="w-full h-9 text-gray-400 bg-white border-gray-400 text-base cursor-pointer focus:outline-none focus:border-sky-500 focus:ring-sky-500"
+                    class="h-9 text-gray-400 ml-1 w-[236px] bg-white border-gray-400 text-base cursor-pointer focus:outline-none focus:border-sky-500 focus:ring-sky-500"
                     name="Objecttype"
                     id="Objecttype"
                   >
-                    <option value="Not selected" disabled selected>
-                      {{ $t("SelectObjectType") }}
+                    <option
+                      class="w-[250px]"
+                      value="Not selected"
+                      disabled
+                      selected
+                    >
+                      Weekday
                     </option>
-                    <option value="Vehicle">{{ $t("Vehicle") }}</option>
-                    <option value="Product">{{ $t("Product") }}</option>
+                    <!-- <option value="Vehicle">{{ $t("Vehicle") }}</option>
+                    <option value="Product">{{ $t("Product") }}</option> -->
                   </select>
                 </div>
               </div>
@@ -91,7 +101,7 @@
                 </div>
                 <div>
                   <textarea
-                    v-model="form.note"
+                    v-model="note"
                     type="text"
                     class="h-[180px] p-2 w-[250px] ml-4 mt-1 border rounded bg-white border-gray-400 text-base focus:outline-none focus:border-sky-500 focus:ring-sky-500 resize-none"
                     v-bind:placeholder="$t('Note')"
@@ -104,73 +114,118 @@
               <!-- Task -->
 
               <!-- Start time -->
-              <div class="flex mt-10 pt-10">
+              <div class="flex mt-10">
                 <div class="w-[130px]">
-                  <label class="mt-2 text-xl ml-5" for="Starttime"
+                  <label class="mt-2 text-xl ml-3" for="Starttime"
                     ><strong>{{ $t("StartTime") }}</strong></label
                   >
                 </div>
-                <div class="h-10 w-[160px] ml-4">
+                <input
+                  type="datetime-local"
+                  v-model="startTime"
+                  id="birthday"
+                  class="mb-2 border p-2 w-[350px]"
+                />
+                <!--  <div class="h-10 w-[160px] ml-4">
                   <Datepicker
+                    v-model="time"
                     :format="format"
-                    v-model="date"
                     inputClassName="time"
                     class="h-5 w-88"
                     placeholder="Select Date"
                     :locale="$i18n.locale"
                     cancelText="abbrechen"
                     selectText="auswählen"
-                  ></Datepicker>
-                </div>
-                <div class="w-[160px] ml-5">
+                  ></Datepicker> 
+                </div>-->
+                <!--   <div class="w-[160px] ml-5">
                   <Datepicker
                     time-picker
-                    v-model="date"
+                    v-model="workingTimeStartTime"
                     inputClassName="time"
                     class="h-5 w-88"
                     placeholder="Select Date"
                     :locale="$i18n.locale"
                     cancelText="abbrechen"
                     selectText="auswählen"
-                  ></Datepicker>
-                </div>
+                  ></Datepicker> 
+                </div>-->
               </div>
+
+              <!--  start pause -->
+              <div class="flex mt-5">
+                <div class="w-[130px]">
+                  <label class="mt-2 text-xl ml-3" for="Endtime">
+                    <strong>Start pause</strong></label
+                  >
+                </div>
+
+                <input
+                  type="datetime-local"
+                  v-model="startPause"
+                  id="birthday"
+                  class="mb-2 border p-2 w-[350px]"
+                />
+              </div>
+
+              <!--  End pause -->
+              <div class="flex mt-5">
+                <div class="w-[130px]">
+                  <label class="mt-2 text-xl ml-3" for="Endtime">
+                    <strong>End pause</strong></label
+                  >
+                </div>
+
+                <input
+                  type="datetime-local"
+                  v-model="endPause"
+                  id="birthday"
+                  class="mb-2 border p-2 w-[350px]"
+                />
+              </div>
+
               <!--  End time -->
               <div class="flex mt-5">
                 <div class="w-[130px]">
-                  <label class="mt-2 text-xl ml-5" for="Endtime">
+                  <label class="mt-2 text-xl ml-3" for="Endtime">
                     <strong>{{ $t("EndTime") }}</strong></label
                   >
                 </div>
-                <!-- v-model="dateTwo" -->
-                <div class="h-10 w-[160px] ml-4">
-                  <Datepicker
+
+                <input
+                  type="datetime-local"
+                  v-model="endTime"
+                  id="birthday"
+                  class="mb-2 border p-2 w-[350px]"
+                />
+                <!--  <div class="h-10 w-[160px] ml-4">
+                   <Datepicker
                     :format="format"
-                    v-model="dateTwo"
+                    v-model="workingTimeEndDate"
                     class="h-5 w-87"
                     inputClassName="time"
                     placeholder="Select Final Date"
                     :locale="$i18n.locale"
                     cancelText="abbrechen"
                     selectText="auswählen"
-                  ></Datepicker>
+                  ></Datepicker> 
                 </div>
-                <div class="w-[160px] ml-5">
+               <div class="w-[160px] ml-5">
                   <Datepicker
                     time-picker
-                    v-model="date"
+                    v-model="workingTimeEndTime"
                     inputClassName="time"
                     class="h-5 w-88"
                     placeholder="Select Date"
                     :locale="$i18n.locale"
                     cancelText="abbrechen"
                     selectText="auswählen"
-                  ></Datepicker>
-                </div>
+                  ></Datepicker> 
+                </div>-->
               </div>
               <!-- Pause in Minuten -->
               <div class="flex mt-5">
-                <div class="w-[130px]">
+                <!-- <div class="w-[130px]">
                   <label class="block mt-3 text-xl ml-5" for="Notes">
                     <strong>{{ $t("PauseTime") }}</strong>
                   </label>
@@ -204,10 +259,10 @@
                 </div>
                 <div class="w-[160px] ml-5 pt-2">
                   <p class="text-lg text-gray-400 rounded">Minuten</p>
-                </div>
+                </div> -->
               </div>
               <!-- Total Time -->
-              <div class="flex mt-5">
+              <!-- <div class="flex mt-5">
                 <div class="w-[130px]">
                   <label class="block mt-3 ml-5" for="TotalTime">
                     <strong>{{ $t("TotalTime") }}</strong>
@@ -242,14 +297,15 @@
                 <div class="w-[160px] ml-5 pt-2">
                   <p class="text-lg text-gray-400">HH:MM</p>
                 </div>
-              </div>
+              </div> -->
               <!-- submit btn -->
 
               <div class="flex mt-5">
-                <div class="w-[130px]"></div>
+                <div class="w-[120px]"></div>
 
                 <button
-                  class="h-10 w-[160px] text-cyan-900 ml-4 border border-cyan-900 rounded text-white focus:outline-none focus:border-sky-500 focus:ring-sky-500"
+                  @click="cancel"
+                  class="h-10 w-[160px] text-cyan-900 ml-4 border border-cyan-900 rounded text-white focus:outline-none focus:border-sky-500 focus:ring-sky-500 hover:bg-cyan-700 hover:text-white"
                   type="submit"
                 >
                   Cancel
@@ -257,7 +313,7 @@
                 <div>
                   <button
                     @click="submit"
-                    class="h-10 w-[160px] bg-cyan-900 ml-4 border rounded text-white focus:outline-none focus:border-sky-500 focus:ring-sky-500"
+                    class="h-10 w-[160px] bg-cyan-900 ml-4 border rounded text-white focus:outline-none focus:border-sky-500 focus:ring-sky-500 hover:bg-cyan-700"
                     type="submit"
                   >
                     {{ $t("save") }}
@@ -274,50 +330,37 @@
 </template>
 <script>
 import axios from "axios";
-import { ref } from "vue";
 
-import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
+// import Datepicker from "@vuepic/vue-datepicker";
+// import "@vuepic/vue-datepicker/dist/main.css";
+// import { ref } from "vue";
 
 import LoadingPage from "../components/LoadingPage.vue";
 
 export default {
   name: "RecordTime-vue",
   components: {
-    Datepicker,
-
+    // Datepicker,
     LoadingPage,
-  },
-  setup() {
-    const dateInYear = ref(new Date());
-    // In case of a range picker, you'll receive [Date, Date]
-    const format = (dateInYear) => {
-      const day = dateInYear.getDate();
-      const month = dateInYear.getMonth() + 1;
-      const year = dateInYear.getFullYear();
-
-      return ` ${day}.${month}.${year}`;
-    };
-
-    return {
-      dateInYear,
-      format,
-    };
   },
 
   data() {
     return {
+      startTime: null,
+      endTime: null,
+      startPause: null,
+      endPause: new Date(""),
+      note: "",
+      // time: null,
       leftChange: "-210px",
-
       /* tasks: [], */
-
       lang: "de",
       errorSending: false,
       loading: false,
       objectLists: [],
       objectSelected: "Not selected",
       vehicleList: [],
-      date: new Date(),
+      // date: new Date(),
       pause: 0,
       minutes: null,
       dateTwo: new Date(),
@@ -339,6 +382,12 @@ export default {
         note: "" /* ok */,
       },
       thanksMessage: false,
+      errorMessageFillForm: "",
+
+      workingTimeStartDate: "",
+      workingTimeStartTime: "01:00:05",
+      workingTimeEndDate: "2022-12-09",
+      workingTimeEndTime: "03:08:05",
     };
   },
 
@@ -394,6 +443,32 @@ export default {
   },
 
   methods: {
+    // mmbnmbn() {
+    //   const date = ref(new Date());
+
+    //   const time = (dateone) => {
+    //     const day = dateone.getDate();
+    //     const month = dateone.getMonth() + 1;
+    //     const year = dateone.getFullYear();
+
+    //     return `${year}-${month}-${day}`;
+    //   };
+
+    //   const format = (date) => {
+    //     const day = date.getDate();
+    //     const month = date.getMonth() + 1;
+    //     const year = date.getFullYear();
+
+    //     return `${year}-${month}-${day}`;
+    //   };
+
+    //   return {
+    //     time,
+    //     date,
+    //     format,
+    //   };
+    // },
+
     emitedTaskes(task) {
       this.form.taskId = task;
     },
@@ -439,57 +514,127 @@ export default {
     writeLog(e) {
       console.log(e);
     },
+    cancel() {
+      this.startTime = null;
+      this.endTime = null;
+      this.startPause = null;
+      this.endPause = null;
+      this.note = "";
+    },
 
-    // .post(`${localStorage.url}/api/time-tracker`, this.form, {
     submit() {
-      axios
-        .post(`https://stage.plan-profi.com/api/time-tracker`, this.form, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((res) => {
-          console.log(res);
+      var moment = require("moment");
 
-          // below lines have to be replace with post information in axios
-          console.log(this.form);
-          // this.loading = true;
-          // this.form = [];
-          // this.pause = "";
-          // this.data = "";
-          // this.dateTwo = "";
-          // this.thanksMessage = true;
-          // setTimeout(
-          //   function () {
-          //     this.loading = false;
-          //   }.bind(this),
-          //   500
-          // );
+      this.startPause = moment(this.startPause).format("YYYY-MM-DD HH:MM:SS");
+      this.endPause = moment(this.endPause).format("YYYY-MM-DD HH:MM:SS");
 
-          // setTimeout(
-          //   function () {
-          //     this.thanksMessage = false;
-          //   }.bind(this),
-          //   5000
-          // );
-        })
+      if (this.startTime === null || this.endTime === null) {
+        this.errorMessageFillForm = "You have to define start and end.";
+        setTimeout(
+          function () {
+            this.errorMessageFillForm = "";
+          }.bind(this),
+          5000
+        );
+      } else if (this.startTime > this.endTime) {
+        this.errorMessageFillForm =
+          "Starting date shouldn't be after finishing date!";
+        setTimeout(
+          function () {
+            this.errorMessageFillForm = "";
+          }.bind(this),
+          5000
+        );
+      } else if (
+        (this.startPause < this.startTime && this.startPause == !null) ||
+        (this.endPause > this.endTime && this.endTime == !null)
+      ) {
+        this.errorMessageFillForm = "Pause is not correct!";
+        setTimeout(
+          function () {
+            this.errorMessageFillForm = "";
+          }.bind(this),
+          5000
+        );
+      } else {
+        axios
+          .post(`https://verkehrsbox.de/api/time-tracker`, null, {
+            params: {
+              "employeeId[0]": `${localStorage.getItem("id")}`,
+              "workingTime[0]": `${this.startTime}`,
+              "workingTime[1]": `${this.endTime}`,
+              "breakTime[0][pause_time]": `${this.startPause}`,
+              "breakTime[0][resume_time]": `${this.endPause}`,
+              note: `${this.note}`,
+              categoryDayId: 3,
+            },
 
-        .catch((err) => {
-          console.error(err.message);
-          this.errors = err.message;
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            this.startTime = null;
+            this.endTime = null;
+            this.startPause = null;
+            this.endPause = null;
+            this.note = "";
+            console.log(this.startTime);
+            console.log(this.endTime);
+            console.log(this.startPause);
+            console.log(this.endPause);
+            this.thanksMessage = true;
+            setTimeout(
+              function () {
+                this.thanksMessage = false;
+              }.bind(this),
+              5000
+            );
 
-          if (this.errors.lenght !== "") {
-            this.errors = "Failed to send the information...";
-          }
+            // below lines have to be replace with post information in axios
+            console.log(this.form);
+            // this.loading = true;
+            // this.form = [];
+            // this.pause = "";
+            // this.data = "";
+            // this.dateTwo = "";
+            // this.thanksMessage = true;
+            // setTimeout(
+            //   function () {
+            //     this.loading = false;
+            //   }.bind(this),
+            //   500
+            // );
 
-          this.errorSending = true;
-          setTimeout(
-            function () {
-              this.errorSending = false;
-            }.bind(this),
-            5000
-          );
-        });
+            // setTimeout(
+            //   function () {
+            //     this.thanksMessage = false;
+            //   }.bind(this),
+            //   5000
+            // );
+          })
+
+          .catch((err) => {
+            console.error(err.message);
+            this.errors = err.message;
+
+            if (this.errors.lenght !== "") {
+              this.errors = "Failed to send the information...";
+            }
+            // this.startTime = null;
+            // this.endTime = null;
+            // this.startPause = null;
+            // this.endPause = null;
+            this.errorSending = true;
+            setTimeout(
+              function () {
+                this.errorSending = false;
+              }.bind(this),
+              5000
+            );
+          });
+      }
     },
   },
 };
@@ -506,6 +651,10 @@ export default {
 }
 </style>
 
-"h-16 w-96 ml-4 mt-1 border bg-orange-50 rounded-xl shadow-md border-gray-400
-text-base p-2 cursor-pointer focus:outline-none focus:border-sky-500
-focus:ring-sky-500"
+submit() { axios .post(`https://verkehrsbox.de/api/time-tracker`, null, {
+params: { "employeeId[0]": `${localStorage.getItem("id")}`, "workingTime[0]":
+`${this.workingTimeStartDate} ${this.workingTimeStartTime}`, "workingTime[1]":
+`${this.workingTimeEndDate} ${this.workingTimeEndTime}`, categoryDayId: 3,
+"breakTime[0][pause_time]": "2022-12-09 01:10:00", "breakTime[0][resume_time]":
+"2022-12-09 01:20:00", note: "Iman1969", }, headers: { Authorization: `Bearer
+${localStorage.getItem("token")}`, }, }) .then((res) => { console.log(res);

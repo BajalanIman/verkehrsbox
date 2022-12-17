@@ -197,17 +197,18 @@ export default {
           email: this.loginData.email,
         })
         .then((response) => {
-          console.log(response.data.token);
-          console.log(response.data.user.first_name);
-          console.log(response.data.user.last_name);
-          console.log(response.data.user.role);
-          console.log(response);
+          // console.log(response.data.token);
+          // console.log(response.data.user.first_name);
+          // console.log(response.data.user.last_name);
+          // console.log(response.data.user.role);
 
           localStorage.setItem("url", `${this.loginData.url}`);
           localStorage.setItem("token", `${response.data.token}`);
           localStorage.setItem("firstName", `${response.data.user.first_name}`);
           localStorage.setItem("lastName", `${response.data.user.last_name}`);
           localStorage.setItem("role", `${response.data.user.role}`);
+          localStorage.setItem("id", `${response.data.user.id}`);
+          console.log(this.loginData.url);
 
           this.$router.push({ path: "dashboard/main-dashboard" });
         })
