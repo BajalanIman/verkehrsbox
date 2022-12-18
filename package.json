@@ -2,6 +2,7 @@
   "name": "mietbox",
   "icon": "build/icons/icon.png",
   "version": "0.2.05",
+  "description": "My mietbox",
   "private": true,
   "repository": {
     "url": "https://github.com/BajalanIman/verkehrsbox.git"
