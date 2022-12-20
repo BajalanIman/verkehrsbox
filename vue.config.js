@@ -4,14 +4,19 @@ module.exports = {
 
   pluginOptions: {
     electronBuilder: {
-      builderOptions: {
-        publish: ["github"],
-        /* win: {
+      builderOptions: [
+        {
+          publish: "github",
+          owner: "ImanBajalan",
+          repo: "git@github.com:BajalanIman/verkehrsbox.git",
+        },
+      ],
+      /* win: {
             target: ["nsis"],
           icon: "./public/mitbox.png",
           requestedExecutionLevel: "requireAdministrator", 
         },*/
-        /* nsis: {
+      /* nsis: {
           installerIcon: "./public/mitbox.ico",
           uninstallerIcon: "./public/mitbox.ico",
           uninstallDisplayName: "./public/mitbox.ico",
@@ -19,7 +24,6 @@ module.exports = {
           oneClick: false,
           allowToChangeInstallationDirectory: true,
         }, */
-      },
     },
   },
   transpileDependencies: true,
