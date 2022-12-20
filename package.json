@@ -1,7 +1,7 @@
 {
   "name": "mietbox",
   "icon": "build/icons/icon.png",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "publish": "github",
   "owner": "ImanBajalan",
   "repository": "https://github.com/BajalanIman/verkehrsbox.git",
