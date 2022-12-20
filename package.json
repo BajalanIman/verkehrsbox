@@ -1,14 +1,12 @@
 {
   "name": "mietbox",
   "icon": "build/icons/icon.png",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "publish": "github",
   "owner": "ImanBajalan",
-  "repository": {
-    "url": "https://github.com/BajalanIman/verkehrsbox.git"
-  },
+  "repository": "https://github.com/BajalanIman/verkehrsbox.git",
   "scripts": {
-    "publish:electron": "vue-cli-service build:electron --win -p always",
+    "publish:electron": "vue-cli-service build:electron -- -p always",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
