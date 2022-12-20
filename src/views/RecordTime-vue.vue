@@ -61,7 +61,7 @@
               <!-- Object type -->
               <div class="pb-3">
                 <label
-                  ><strong>{{ $t("RecordWorktime") }}</strong></label
+                  ><strong  class="bg-red-500">{{ $t("RecordWorktime") }}</strong></label
                 >
               </div>
               <div class="flex mt-8">
