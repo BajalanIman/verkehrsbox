@@ -9,6 +9,7 @@
   "scripts": {
     "publish:electron": "vue-cli-service build:electron --win -p always",
     "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
@@ -18,15 +19,6 @@
     "release": "electron-builder"
   },
   "main": "background.js",
-  "build": {
-    "publish": "github",
-    "owner": "ImanBajalan",
-    "repo": "git@github.com:BajalanIman/verkehrsbox.git"
-  },
-  "author": {
-    "name": "BajalanIman",
-    "email": "BajalanIman@gmail.com"
-  },
   "license": "ISC",
   "dependencies": {
     "-": "^0.0.1",
