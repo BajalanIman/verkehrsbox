@@ -6,7 +6,7 @@ module.exports = {
     electronBuilder: {
       builderOptions: [
         {
-          publishrs: "github",
+          publishr: "github",
           owner: "ImanBajalan",
           repo: "git@github.com:BajalanIman/verkehrsbox.git",
         },
