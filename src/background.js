@@ -17,7 +17,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
-    resizable: true,
+    resizable: false,
     icon: "/build/icons/icon.png",
 
     webPreferences: {

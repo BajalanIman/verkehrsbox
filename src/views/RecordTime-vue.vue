@@ -52,7 +52,7 @@
 
       <!-- Employees -->
 
-      <div class="bg-white flex justify-center items-center h-[710px]">
+      <div class="bg-white flex justify-center items-center h-[722px]">
         <!-- Header -->
 
         <form v-on:submit.prevent="submitform" ref="textareaform">
@@ -61,7 +61,7 @@
               <!-- Object type -->
               <div class="pb-3">
                 <label
-                  ><strong  class="bg-red-500">{{ $t("RecordWorktime") }}</strong></label
+                  ><strong class="">{{ $t("RecordWorktime") }}</strong></label
                 >
               </div>
               <div class="flex mt-8">
